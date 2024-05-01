@@ -30,7 +30,7 @@
                 <p class="detail-label"><strong>Email:</strong>example@gmail.com</p>
             </div>
         </div>
-        <form action="index.html" method="GET">
+        <form action="index.php" method="GET">
             <button type="submit" class="back-to-login-button">Back to Log In</button>
         </form>
     </div>

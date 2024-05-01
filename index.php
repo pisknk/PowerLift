@@ -15,16 +15,17 @@
       <h2>Welcome to</h2>
     </div>
     <h2 style="font-size: 40px;"><strong>Power</strong> Lift</h2>
-    <form action="index.html" method="GET">
-      <label for="username">Gmail:</label>
+    <form action="Users/index.html">
+      <label for="username">Username:</label>
       <input type="text" id="username" name="username" required>
 
-      <label for="password">Membership Code:</label>
-      <input type="text" id="password" name="password" required placeholder="Membership Code (Ex: A00-052)">
-    <div class="row">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <div class="row">
         <button type="submit">Let's Go!</button>
-        <a href="index.html" class="forgot-password">Back to Login</a>
+        <a href="forgot.php" class="forgot-password">Forgot Password?</a>
     </div>
+    <a href="signup.php" class="create-account">Create Account</a>
 </form>
   </div>
 </div>

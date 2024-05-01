@@ -15,14 +15,14 @@
         <span class="big-text">Power Lift</span>
       </div>
     </div>
-    <a href="index.html" class="go-back-button">Go Back to login</a>
+    <a href="index.php" class="go-back-button">Go Back to login</a>
     <br>
     <h1 class="subscription-text">Choose Your Membership Plan</h1>
     <p class="description">
       Get unlimited access to equipment, plus a seamless way to manage your membership.
     </p>
     <hr class="line">
-    <form action="reciept.html" method="post" class="subscription-form">
+    <form action="reciept.php" method="post" class="subscription-form">
       <div class="options">
         <div class="option">
           <input type="radio" id="tier1" name="tier">

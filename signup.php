@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Signup Form - PowerLift</title>
-  <link rel="stylesheet" href="signin.css">
+  <link rel="stylesheet" href="signup.css">
 </head>
 <body>
     <div class="container">
@@ -15,21 +15,21 @@
                 <span class="big-text">Power Lift</span>
             </div>
         </div>
-        <a href="index.html" class="go-back-button">Go Back to login</a>
+        <a href="index.php" class="go-back-button">Go Back to login</a>
         <br>
         <h1 class="sign-up-text">Please Fill Up the Following</h1>
-        <form action="plan.html" method="post" class="signup-form">
+        <form action="plan.php" method="post" class="signup-form">
           <div class="form-group">
-            <input type="text" name="firstname" placeholder="First Name" required>
+            <input type="text" name="firstname" placeholder="First Name" name="firstname" required>
           </div>
           <div class="form-group">
-            <input type="text" name="lastname" placeholder="Last Name" required>
+            <input type="text" name="lastname" placeholder="Last Name" name="lastname" required>
           </div>
           <div class="form-group">
-            <input type="email" name="email" placeholder="Email" required>
+            <input type="email" name="email" placeholder="Email" name="email" required>
           </div>
           <div class="form-group">
-            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="password" placeholder="Password" name="password" required>
           </div>
           <div class="form-group">
             <button type="submit" class="submit-button">Continue</button>
