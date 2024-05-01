@@ -18,12 +18,12 @@
         <a href="index.php" class="go-back-button">Go Back to login</a>
         <br>
         <h1 class="sign-up-text">Please Fill Up the Following</h1>
-        <form action="plan.php" method="post" class="signup-form">
+        <form action="connect.php" method="post" class="signup-form">
           <div class="form-group">
-            <input type="text" name="firstname" placeholder="First Name" name="firstname" required>
+            <input type="text" name="firstName" placeholder="First Name" name="firstname" required>
           </div>
           <div class="form-group">
-            <input type="text" name="lastname" placeholder="Last Name" name="lastname" required>
+            <input type="text" name="lastName" placeholder="Last Name" name="lastname" required>
           </div>
           <div class="form-group">
             <input type="email" name="email" placeholder="Email" name="email" required>
