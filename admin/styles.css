@@ -1,0 +1,175 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('../bg.png');
+    background-size: cover;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #333333c2;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar h1 {
+    margin: 0;
+    color: white;
+  }
+  
+  /* Logout button styles */
+  .logout-btn {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-btn:hover {
+    background-color: #d32f2f;
+  }
+  
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Add transparency to the container background */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-top: 15pc;
+}
+
+h1 {
+    text-align: center;
+    color: #333; /* Adjust heading color for better readability */
+    margin-bottom: 30px;
+}
+
+.dashboard-menu {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.dashboard-menu a {
+    text-decoration: none;
+    color: #fff; /* Adjust link color for better contrast */
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #4CAF50; /* Use a green color for menu background */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.dashboard-menu a:hover {
+    background-color: #45a049; /* Darker green color on hover */
+}
+
+.content {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.content > div {
+    display: flex;
+    flex-basis: calc(25% - 20px);
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+#equipment-inventory h2,
+#membership-management h2,
+#daily-checkup h2,
+#equipment-issue h2 {
+    font-size: 24px; /* Increase heading size for emphasis */
+    color: #333;
+    margin-bottom: 40px;
+}
+
+#equipment-inventory ul,
+#membership-management ul,
+#daily-checkup ul,
+#equipment-issue ul {
+    padding-left: 20px;
+}
+
+#equipment-inventory ul li,
+#membership-management ul li,
+#daily-checkup ul li,
+#equipment-issue ul li {
+    font-size: 16px;
+    color: #555; /* Adjust item text color for better contrast */
+}
+
+#equipment-inventory ul li::before,
+#daily-checkup ul li::before,
+#equipment-issue ul li::before {
+    content: "\2022";
+    color: #4CAF50; /* Use green bullet point for positive items */
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+#membership-management ul li::before {
+    content: "\25CF";
+    color: #F44336; /* Use red bullet point for critical items */
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Make the card a column layout */
+    justify-content: center; /* Center content vertically */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Add hover effect to cards */
+}
+
+.card h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center; /* Center the header text */
+}
+
+.card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Remove default margin */
+    text-align: left; /* Center the list items */
+}
+
+.card ul li {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 8px;
+}

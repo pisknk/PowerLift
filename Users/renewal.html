@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Renewal</title>
+    <link rel="stylesheet" href="renewal.css">
+</head>
+<body> 
+    <div class="sidebar">
+        <a href="index.html">Profile</a>
+        <a href="renewal.html">Renewal</a>
+        <a href="Training.html">Training Session</a>
+        <a href="history.html">Payment History</a>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <!-- Navigation Bar -->
+        <div class="navbar">
+            <h1>Powerlift Gym User Dashboard</h1>
+            <div class="nav-links">
+                <a href="../index.html" class="logout-btn">Logout</a>
+            </div>
+        </div>
+    <div class="container">
+        <h1>Subscription Renewal</h1>
+        <form action="index.html" method="POST">
+            <div class="form-group">
+                <label for="subscriptionType">Select Subscription Type:</label>
+                <select name="subscriptionType" id="subscriptionType">
+                    <option value="1">1 Month - P150</option>
+                    <option value="6">6 Months - P900</option>
+                    <option value="12">1 Year - P900</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="paymentMethod">Select Payment Method:</label>
+                <select name="paymentMethod" id="paymentMethod">
+                    <option value="creditCard">Credit Card</option>
+                    <option value="debitCard">Debit Card</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="bankTransfer">Bank Transfer</option>
+                    <option value="bankTransfer">Gcash</option>
+                    <option value="bankTransfer">Cashier</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cardNumber">Card Number:</label>
+                <input type="text" id="cardNumber" name="cardNumber" placeholder="Enter your card number">
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" placeholder="Enter CVV">
+            </div>
+            <button type="submit">Renew Subscription</button>
+        </form>
+    </div>
+</body>
+</html>

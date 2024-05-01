@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('bg.png');
+    background-size: cover; /* Ensures the background image covers the entire body */
+}
+
+.container {
+    max-width: 600px; /* Adjust as needed */
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.logo-container {
+    text-align: center;
+}
+
+.logo {
+    max-width: 100px; /* Adjust as needed */
+    border-radius: 50%; /* Make it a circle */
+}
+
+.logo-text {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.small-text {
+    font-size: 14px;
+    display: block; /* Ensures each span is on a new line */
+}
+
+.big-text {
+    font-size: 35px;
+    font-weight: bold;
+    display: block; /* Ensures each span is on a new line */
+}
+
+.payment-instructions-card {
+    text-align: center;
+    padding: 20px;
+}
+
+.title {
+    color: #007bff; /* Blue color */
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.instruction-text {
+    color: #666666; /* Gray color */
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.code-container,
+.note-container {
+    background-color: #969696; /* Background color for code and note */
+    padding: 10px; /* Add padding for better readability */
+    border-radius: 5px; /* Optional: Add border radius for a rounded look */
+    margin-bottom: 10px; /* Add margin between code and note */
+}
+.details {
+    text-align: left;
+}
+
+.detail-label {
+    color: #666666; /* Gray color */
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.detail-value {
+    color: #000000; /* Black color */
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.back-to-login-button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 25pc;
+    
+}
+
+.back-to-login-button:hover {
+    background-color: #0056b3;
+}
