@@ -26,15 +26,15 @@
       <div class="options">
         <div class="option">
           <input type="radio" id="tier1" name="tier">
-          <label for="tier1">₱150 - 1 Month</label>
+          <label for="tier1">₱125 - 1 Month</label>
         </div>
         <div class="option">
           <input type="radio" id="tier2" name="tier">
-          <label for="tier2">₱900 - 6 Months</label>
+          <label for="tier2">₱750 - 6 Months</label>
         </div>
         <div class="option">
           <input type="radio" id="tier3" name="tier">
-          <label for="tier3">₱900 - 1 Year</label>
+          <label for="tier3">₱1,500 - 1 Year</label>
         </div>
       </div>
       <div class="form-group">
