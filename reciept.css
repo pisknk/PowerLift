@@ -2,11 +2,10 @@ body{
     background-image: url(img/bg.png);
     background-size: cover;
     margin: 0;
-    padding: 6rem;
 }
 .dashes {
-    border: 5px dashed black; /* Adjust the color and width of the dashed outline as needed */
-    padding: 20px; /* Optional: Add padding to the div */
+    border: 5px dashed black;
+    padding: 20px;
     border-radius: 26px;
     margin-top: 2.6rem;
     margin-bottom: 2rem;
@@ -19,8 +18,8 @@ body{
     backdrop-filter: blur(40.099998474121094px) !important;
 }
 .form-control{
-    border-radius: 10px;
-    background: #CDCDCD;
+    border-radius: 10px !important;
+    background: #CDCDCD !important;
 }
 h2{
     font-size: 24px !important;
@@ -38,5 +37,5 @@ h2{
     margin-bottom: 2rem;
 }
 .insides{
-    margin-top: 9rem;
+    margin-top: 2rem;
 }

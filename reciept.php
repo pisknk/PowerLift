@@ -3,15 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Signup to PowerLift</title>
+    <title>Thanks for regestering!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="signup.css" rel="stylesheet">
+    <link href="reciept.css" rel="stylesheet">
 </head>
 <body>
 
 <?php
-// Include the PHP code for generating random code
 function generateRandomCode() {
     $letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $numbers = '0123456789';
@@ -28,25 +27,28 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $tier = $_POST['tier'];
 
-// Generate random code
+// generate random code
 $randomCode = generateRandomCode();
 
-// Hash the password
+// encrypt password
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-// Establish connection to the database
+// default role for new users
+$defaultRole = "users";
+
+// connection to the database
 $conn = new mysqli('localhost', 'root', '', 'PowerLift');
 if ($conn->connect_error) {
     die('Connection Failed : ' . $conn->connect_error);
 } else {
-    // Prepare SQL statement with placeholders to prevent SQL injection
-    $stmt = $conn->prepare("INSERT INTO users(firstName, lastName, email, password, tier, activation_code) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssss", $firstName, $lastName, $email, $hashedPassword, $tier, $randomCode);
+    // prevent SQL injection
+    $stmt = $conn->prepare("INSERT INTO users(firstName, lastName, email, password, tier, activation_code, role) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssss", $firstName, $lastName, $email, $hashedPassword, $tier, $randomCode, $defaultRole);
     
-    // Execute the prepared statement
+    // execute
     $stmt->execute();
     
-    // Check if the registration was successful
+    // check if the registration was successful
     if ($stmt->affected_rows > 0) {
         echo '<div class="d-flex align-items-center justify-content-center" style="min-height: 100vh; margin: 0;">
             <div class="container">
@@ -62,7 +64,7 @@ if ($conn->connect_error) {
                                             <p2>' . $randomCode . '</p2> <br>
                                             <p3><b>MEMBERSHIP WILL START AFTER PAYMENT</b></p3>
                                         </div>
-                                        <p4>Duration: ' . $tier . ' Months</p4><br>
+                                        <p4>Duration: ' . $tier . ' Month(s)</p4><br>
                                         <p5>Name: ' . $firstName . ' ' . $lastName . '</p5><br>
                                         <p6>Email: ' . $email . '</p6><br>
                                     </div>
@@ -72,7 +74,7 @@ if ($conn->connect_error) {
                                         <img src="img/smallogo.png"><br><br>
                                         <p1>thanks for subscribing to</p1>
                                         <h1>PowerLift</h1><br><br>
-                                        <button type="submit" class="btn btn-primary">Continue</button>
+                                        <a class="btn btn-primary" href="index.php" role="button">Back to Login</a>
                                     </div>
                                 </div>
                             </div>
@@ -82,11 +84,11 @@ if ($conn->connect_error) {
             </div>
         </div>';
         exit();
-    } else {
-        echo "Registration Failed...";
+    } else { // if registration failed
+        echo "Registration Failed :( Please go back and try again.";
     }
 
-    // Close the statement and connection
+    // close the statement and connection
     $stmt->close();
     $conn->close();
 }

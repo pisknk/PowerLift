@@ -1,140 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
 body {
     font-family: Arial, sans-serif;
-    background-image: url('bg.png');
+    background-image: url('img/bgsignin.png');
     background-size: cover; /* Ensures the background image covers the entire body */
     margin: 0;
     padding: 0;
+    font-family: Inter;
 }
-
-.wrapper {
-    display: flex;
-    justify-content: space-around; /* Adjust as per your need */
-    align-items: center;
+.backk{
+    background-color: rgba(0, 0, 0, 0) !important;
+    outline: none !important;
+    border: none !important; /* remove boarder */
 }
-
-.logo-container {
-    text-align: center;
-    margin-top: 50px; /* Adjust margin to move the h1 lower */
-}
-
-.logo-image {
-    width: 100px; /* Adjust the width of the image */
-    height: auto; /* Allows the image to scale proportionally */
-    border-radius: 50%;
-    position: absolute;
-    top: 160px; /* Adjust the top margin of the logo */
-    left: 73%; /* Position the logo horizontally */
-    transform: translateX(-50%); /* Center the logo horizontally */
-    
-}
-
-.login-container {
-    background-color: #fff;
-    border-radius: 40px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    width: 400px;
-    margin-top: 15pc;
-}
-
-.logo {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-weight: lighter;
-}
-
-.login-container form {
-    display: flex;
-    flex-direction: column;
-}
-
-.login-container label {
-    margin-bottom: 8px;
-}
-
-.login-container input[type="text"],
-.login-container input[type="password"] {
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    background-color: gainsboro;
-    border-radius: 4px;
-}
-
-.login-container input[type="submit"] {
-    background-color: #0059ff;
+h1, h2{
     color: white;
-    padding: 12px 20px;
-    border: 2px solid #0f0f0f; /* Add border with desired color */
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background-color 0.3s;
 }
-
-.login-container input[type="submit"]:hover {
-    background-color: #033eac;
+h3{
+    font-size: 3rem;
+    font-weight: bold;
 }
-
-h1 {
-    text-align: center;
-    margin-top: 50px; /* Adjust margin to move the h1 lower */
-    font-size: 50px; /* Adjust the font size as needed */
-    color: white;
-    text-shadow: 
-        -1px -1px 0 #636161,  
-        1px -1px 0 #636161,
-        -1px 1px 0 #636161,
-        1px 1px 0 #636161; /* Add an outline effect */
+.maincard{
+    border: none !important;
+    border-radius: 26px !important;
+    background: rgba(255, 255, 255, 0.94) !important;
+    box-shadow: 0px 0px 25.9px 0px rgba(0, 0, 0, 0.30) !important;
+    backdrop-filter: blur(40.099998474121094px) !important;
+    padding: 40px !important;
 }
-.row {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 10px;
+.form-control{
+    border-radius: 10px;
+    background: #C9C9C9;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-.forgot-password,
-.create-account {
+.btn-primary{
+    margin-right: 2rem;
+}
+a{
     text-decoration: none;
-    color: #007bff;
-    text-align: center;
-    margin-top: 10px;
 }
-
-.forgot-password:hover,
-.create-account:hover {
-    text-decoration: underline;
+.hello{
+    width: 170px;
+    height: 170px;
+    flex-shrink: 0;
 }
-
-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-/* Hover effect */
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Anchor style for "Back to Login" link */
-a.forgot-password {
-    margin-left: 10px;
-    color: #007bff;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-/* Anchor hover effect */
-a.forgot-password:hover {
-    text-decoration: underline;
-}
-
