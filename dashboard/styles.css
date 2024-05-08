@@ -1,0 +1,200 @@
+/* bootstrap icons */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+/* font imports */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+/* gamit ug REM!! PX for font lang - love neil :) xoxo */
+
+/* sidebar props */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 200px;
+    padding: 20px;
+    background-image: url(../img/bg.png);
+    border-right: 2px solid #dee2e6;
+}
+
+.nav-item{
+    margin-bottom: 10px; /* individual na item sa list */
+}
+
+.nav{
+    margin-top: 20px;    /* navbar/sidebar margin top */
+}
+
+.active{                /* active tab */
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    text-shadow: 0px 0px 11.9px rgba(0, 0, 0, 0.54);
+}
+
+.inactive{                /* inactive tab */
+    color: #000000;
+}
+
+.logo{                     /* thridd logo on "Admin" text */
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.bottom-item {                /* para mu ubos ang isa ka item sa ubos */
+    position: absolute;
+    bottom: 40px; 
+    padding-right: 20px;
+}
+
+.logoutred{               /* logout button color */
+    color: red;
+}
+
+/* main content */
+
+.content {
+    margin-left: 16rem;
+    margin-top: 60px;
+    padding: 20px;
+}
+
+.salestats{                /* monthly sold stats widget */
+    margin-top: 3rem;
+    width: 24rem;
+    background-color: none;
+    border: none;
+}
+
+.recentcard{                /* recently sold stat widget */
+    margin-left: 5rem;
+    margin-top: 3rem;
+    max-width: 29rem;
+    padding: 20px;
+}
+
+.phonepic{                /* pic for recent widget */
+    width: auto;
+    height: auto;
+    margin-left: -10px;
+    margin-top: 10px;
+}
+
+.line{                      /* line separator */
+    width: 49.375rem;
+    height: 0.0625rem;
+    background-color: #17171717;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3rem;
+}
+
+.inventory{                 /* inventory div */
+    width: auto;
+    background-color: none;
+    border: none;
+    margin-top: -1rem;
+}
+
+.fab {                      /* floating action bar */
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}
+
+select {                      /* date picker */
+    margin-top: 3rem;
+}
+
+/* all text properties */
+
+p, p2, p3, h1, h2, h3, h4, h5, .card-text1, .add, .bi, .edit, .delete{
+    font-family: 'Inter', sans-serif;
+}
+
+p{
+    margin-bottom: 3rem;
+}
+
+p2, p3{
+    color: #171717;
+}
+
+h2{
+    font-weight: bold !important;
+}
+
+h5{
+    font-weight: bold;
+}
+
+.card-text1{
+    margin-bottom: 30px;
+}
+
+.add{
+    text-decoration: none;
+}
+
+.bi{                /* icon props */
+    font-size: 30px;
+    margin-right: 20px;
+}
+
+.edit{
+    font-size: 20px !important;
+    padding: 20px;
+}
+
+.delete{
+    font-size: 20px !important;
+    padding: 20px;
+}
+
+mark{
+    background-color: red;
+    color: white;
+}
+
+.admintext{
+    color: #ffffff;
+}
+
+/* table colours */
+/* !important is para ma override ang default colour ni bootstrap */
+
+.blue{
+    background-color: blue !important;
+    color: white !important;
+}
+
+.coral{
+    background-color: coral !important;
+    font-weight: bold;
+}
+
+.lightcoral{
+    background-color: rgb(255, 235, 206) !important;
+}
+
+.yellow{
+    background-color: yellow !important;
+    font-weight: bold;
+}
+
+.lightyellow{
+    background-color: rgb(255, 255, 198) !important;
+}
+
+.table{
+    color: #171717;
+    border-color: #171717;
+    margin-bottom: 6rem;
+}
+
+.alert{
+    width: 36rem !important;
+    margin-left: 17rem;
+    margin-top: 6rem;
+}

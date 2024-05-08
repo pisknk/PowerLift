@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // role
             if ($_SESSION['role'] == 'admin') {
-                header("Location: admin_panel.php");
+                header("Location: dashboard/admin.html");
                 exit();
             } elseif ($_SESSION['role'] == 'users') {
                 header("Location: user_dashboard.php");
