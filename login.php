@@ -38,10 +38,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // role
             if ($_SESSION['role'] == 'admin') {
-                header("Location: dashboard/admin.html");
+                header("Location: dashboard/admin.php");
                 exit();
             } elseif ($_SESSION['role'] == 'users') {
-                header("Location: user_dashboard.php");
+                header("Location: hello/index.php");
                 exit();
             } else {
 
