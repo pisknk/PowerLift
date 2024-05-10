@@ -29,6 +29,27 @@ if (isset($_GET['id'])) {
     }
 }
 
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the updated values from the form
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $email = $_POST['email'];
+
+    // Update the member details in the database
+    $updateSql = "UPDATE users SET firstName = '$firstName', lastName = '$lastName', email = '$email' WHERE id = $id";
+    if ($conn->query($updateSql) === TRUE) {
+?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>✅</strong> User details has been updated. Refresh page to reflect changes. <br><br> Or you can now click on the X button to go back safely.
+            <button type="button" class="btn-close" aria-label="Close" onclick="window.location.href = 'members.php';"></button>
+        </div>
+<?php
+    } else {
+        echo "Error updating member details: " . $conn->error;
+    }
+}
+
 // Close connection
 $conn->close();
 ?>
