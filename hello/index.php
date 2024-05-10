@@ -39,7 +39,7 @@ try {
 </head>
 <body>
 
-<form action="" method="post"> <!-- form validation -->
+<form action="../logout.php" method="post"> <!-- form validation -->
     <div class="d-flex align-items-center justify-content-center" style="min-height: 100vh; margin: 0;">
 
         <div class="container"> <!-- Card container -->
@@ -53,7 +53,7 @@ try {
                                 <br>
                                 <img src="../img/helloalt.webp" class="hello">
                                 <br><br>
-                                <h1>Welcome back,<br> <?php echo $userFirstName; ?>!</h1>
+                                <h1>Welcome back, <?php echo $userFirstName; ?>!</h1>
 
                             </div>
 
@@ -75,8 +75,8 @@ try {
 
                                         <div class="buttons">
                                             <br>
-                                            <a role="button" href="../index.php" class="btn btn-primary">View Visit History</a>
-                                            <a role="button" href="../logout.php" class="btn btn-danger">Log out</a>
+                                            <a role="button" href="history.php" class="btn btn-primary">View Visit History</a>
+                                            <button type="submit" class="btn btn-danger">Log out</button>
                                             <br><br>
                                         </div>
                                     </div>

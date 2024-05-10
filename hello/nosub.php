@@ -69,7 +69,7 @@ try {
                                 <br><br><br>
                                 <img src="../img/helloalt.webp" class="hello">
                                 <br><br>
-                                <h1>Hello,<br> <?php echo $firstName; ?>!</h1>
+                                <h1>Hello, <?php echo $firstName; ?>!</h1>
 
                             </div>
 

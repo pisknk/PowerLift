@@ -37,6 +37,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['lastName'] = $row['lastName'];
                     $_SESSION['activationCode'] = $row['activation_code'];
                     $_SESSION['tier'] = $row['tier'];
+
+                    // Insert visit history
+                    $visit_date = date("Y-m-d");
+                    $time_in = date("H:i:s");
+
+                    $sql = "INSERT INTO visit_history (user_email, visit_date, time_in) VALUES (?, ?, ?)";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("sss", $email, $visit_date, $time_in);
+                    $stmt->execute();
+                    $stmt->close();
+
                     header("Location: hello/index.php");
                     exit();
                 } else {
