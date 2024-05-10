@@ -1,35 +1,38 @@
 <?php
 session_start();
 
-// checker if naka login ba
+// Check if the user is logged in
 if (!isset($_SESSION['email'])) {
-    // balik if dili logged in
+    // Redirect to login page if not logged in
     header("Location: ../index.php");
     exit();
 }
 
+// Fetch user data from the database
 $db_host = 'localhost';
 $db_name = 'PowerLift';
 $db_user = 'root';
 $db_pass = '';
 
 try {
-    // connect to the database
+    // Attempt to connect to the database
     $pdo = new PDO("mysql:host={$db_host};dbname={$db_name}", $db_user, $db_pass);
-
+    // Set the PDO error mode to exception
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // fetch user data
+    // Fetch user data based on the logged-in user's email
     $email = $_SESSION['email'];
-    $stmt = $pdo->prepare("SELECT firstName, subscription_end_date FROM users WHERE email = ?");
+    $stmt = $pdo->prepare("SELECT activation_code, tier, firstName, lastName FROM users WHERE email = ?");
     $stmt->execute([$email]);
     $userData = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // extract user data
-    $userFirstName = $userData['firstName'];
-    $membershipExpirationDate = date("F j, Y", strtotime($userData['subscription_end_date']));
+    // Extract user data
+    $activationCode = $userData['activation_code'];
+    $tier = $userData['tier'];
+    $firstName = $userData['firstName'];
+    $lastName = $userData['lastName'];
 } catch(PDOException $e) {
-    // database connection errors
+    // Handle database connection errors
     echo "Connection failed: " . $e->getMessage();
 }
 ?>
@@ -39,7 +42,7 @@ try {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome Back, <?php echo $userFirstName; ?>! </title>
+    <title>Not yet subscribed.</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
@@ -57,10 +60,10 @@ try {
 
                             <div class="col"> <!-- input and controls -->
                             
-                                <br>
+                                <br><br><br>
                                 <img src="../img/helloalt.webp" class="hello">
                                 <br><br>
-                                <h1>Welcome back,<br> <?php echo $userFirstName; ?>!</h1>
+                                <h1>Hello,<br> <?php echo $firstName; ?>!</h1>
 
                             </div>
 
@@ -69,20 +72,24 @@ try {
                                     <div class="card-body text-center">
                                         <div class="head">
                                             <br>
-                                            <p>You can now exit the site,<br> but don’t forget to come back here later to logout.</p><br>
+                                            <p>You don't have a subscription yet.<br>Before you can enter the gym, please pay for a membership.</p><br>
                                         </div>
 
-                                        <a href="membership.html"> <div class="card boxx">
-
-                                            <p1>MEMBERSHIP WILL EXPIRE ON:</p1><br>
-                                            <p2><b><?php echo $membershipExpirationDate; ?></b></p2><br>
-                                            <p3>tap card to manage your subscription</p3>
-
-                                        </div> </a>
+                                        <div class="dashes">
+                                            <p>Please show this code to the cashier and pay:</p>
+                                            <div class="subscription">
+                                                <p2><?php echo $activationCode; ?></p2> <br>
+                                                <p3><b>MEMBERSHIP WILL START AFTER PAYMENT</b></p3>
+                                            </div>
+                                            <div class="text-start">
+                                                <p4><b>Duration:</b> <?php echo $tier; ?> Month(s)</p4><br>
+                                                <p5><b>Name:</b> <?php echo $firstName; ?> <?php echo $lastName; ?></p5><br>
+                                                <p6><b>Email:</b> <?php echo $email; ?></p6><br>
+                                            </div>
+                                        </div>
 
                                         <div class="buttons">
                                             <br>
-                                            <a role="button" href="../index.php" class="btn btn-primary">View Visit History</a>
                                             <a role="button" href="../index.php" class="btn btn-danger">Log out</a>
                                             <br><br>
                                         </div>

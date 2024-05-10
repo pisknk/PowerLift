@@ -32,19 +32,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         // then password
         if (password_verify($password, $row['password'])) {
-            // encyr
-            $_SESSION['email'] = $email;
-            $_SESSION['role'] = $row['role'];
-
-            // role
-            if ($_SESSION['role'] == 'admin') {
-                header("Location: dashboard/admin.php");
-                exit();
-            } elseif ($_SESSION['role'] == 'users') {
-                header("Location: hello/index.php");
-                exit();
+            // check if the user has a subscription
+            if ($row['subscription_end_date'] != null && strtotime($row['subscription_end_date']) > time()) {
+                // encyr
+                $_SESSION['email'] = $email;
+                $_SESSION['role'] = $row['role'];
+    
+                // role
+                if ($_SESSION['role'] == 'admin') {
+                    header("Location: dashboard/admin.php");
+                    exit();
+                } elseif ($_SESSION['role'] == 'users') {
+                    header("Location: hello/index.php");
+                    exit();
+                } else {
+                    // handle other roles if needed
+                }
             } else {
-
+                // Redirect to nosubs.php if the user has no subscription or subscription_end_date is NULL
+                header("Location: hello/nosub.php");
+                exit();
             }
         } else {
             // invalid password error
@@ -53,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // email error
         echo "Invalid email or password";
-    }
+    }      
 
     $conn->close();
 }

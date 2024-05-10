@@ -64,9 +64,11 @@ if ($conn->connect_error) {
                                             <p2>' . $randomCode . '</p2> <br>
                                             <p3><b>MEMBERSHIP WILL START AFTER PAYMENT</b></p3>
                                         </div>
-                                        <p4>Duration: ' . $tier . ' Month(s)</p4><br>
-                                        <p5>Name: ' . $firstName . ' ' . $lastName . '</p5><br>
-                                        <p6>Email: ' . $email . '</p6><br>
+                                        <div class="text-start">
+                                        <p4><b>Duration:</b> ' . $tier . ' Month(s)</p4><br>
+                                        <p5><b>Name:</b> ' . $firstName . ' ' . $lastName . '</p5><br>
+                                        <p6><b>Email:</b> ' . $email . '</p6><br>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col">
