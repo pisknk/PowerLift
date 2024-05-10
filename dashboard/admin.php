@@ -1,5 +1,34 @@
 <?php
 session_start();
+
+// Database connection parameters
+$db_host = 'localhost';
+$db_name = 'PowerLift';
+$db_user = 'root';
+$db_pass = '';
+
+try {
+    // Connect to the database
+    $pdo = new PDO("mysql:host={$db_host};dbname={$db_name}", $db_user, $db_pass);
+    // Set the PDO error mode to exception
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Fetch the most recent PowerLifter
+    $stmt = $pdo->query("SELECT firstName, lastName, tier FROM users WHERE role = 'users' ORDER BY subscription_start_date DESC LIMIT 1");
+    $recentPowerLifter = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Count the total number of PowerLifters
+    $stmt = $pdo->query("SELECT COUNT(*) as totalPowerLifters FROM users WHERE role = 'users' AND subscription_start_date IS NOT NULL");
+    $totalPowerLifters = $stmt->fetch(PDO::FETCH_ASSOC)['totalPowerLifters'];
+
+    // Count the total number of Members
+    $stmt = $pdo->query("SELECT COUNT(*) as totalMembers FROM users");
+    $totalMembers = $stmt->fetch(PDO::FETCH_ASSOC)['totalMembers'];
+} catch(PDOException $e) {
+    // Handle database connection errors
+    echo "Connection failed: " . $e->getMessage();}
+   
+
 if (isset($_SESSION['activation_success']) && $_SESSION['activation_success']) {
     // Display the alert
     echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -23,15 +52,7 @@ if (isset($_SESSION['activation_success']) && $_SESSION['activation_success']) {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="styles.css" rel="stylesheet">
-        <title>Bootstrap Example</title>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-        <!-- preload images -->
-        <link rel="preload" href="../images/logo.png" as="image">
-        <link rel="preload" href="../images/iPhone11.png" as="image">
-        <link rel="preload" href="../images/listing.png" as="image">
-        <link rel="preload" href="../images/manage.png" as="image">
-        <link rel="preload" href="../images/reciept.png" as="image">
 
     </head>
 
@@ -46,15 +67,15 @@ if (isset($_SESSION['activation_success']) && $_SESSION['activation_success']) {
                 <ul class="nav flex-column"> <!-- sidebar -->
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="admin.html"><i class="bi bi-house-fill"></i>Home</a>
+                        <a class="nav-link active" href="admin.php"><i class="bi bi-house-fill"></i>Home</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link inactive" href="inventory.html"><i class="bi bi-phone"></i>Inventory</a>
+                        <a class="nav-link inactive" href="inventory.html"><i class="bi bi-phone"></i>Members</a>
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link inactive" href="sales.html"><i class="bi bi-bar-chart-line"></i>Sales</a>
+                        <a class="nav-link inactive" href="sales.html"><i class="bi bi-bar-chart-line"></i>Checkup</a>
                     </li>
 
                     <div class="bottom-item dropdown"> <!-- items sa ubos -->
@@ -66,8 +87,11 @@ if (isset($_SESSION['activation_success']) && $_SESSION['activation_success']) {
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="adminDropdown">
-                            <a class="dropdown-item logoutred" href="../logout.php">Log out</a>
-                        
+                            
+                            <form action="../logout.php" method="post"> <!-- form validation -->
+                            <button class="dropdown-item logoutred" type="submit">Log out</>
+                            </form>
+                            
                             </div>
 
                         </li>
@@ -124,35 +148,39 @@ if (isset($_SESSION['activation_success']) && $_SESSION['activation_success']) {
 
                 </div>
 
-                <div class="line"></div> <!-- line for depth effect -->
+                <div class="line"></div> <!-- line for depth effect - widget area -->
 
-                            <div class="card recentcard"> <!-- recently subscribed -->
-
-                                <div class="col">
-
-                                    <div class="card-body">
-                                        <h5 class="card-title">Recent PowerLifter</h5>
-                                        <p class="card-text"> <!-- Name of the recently subscribed user --> </p>
-                                        <p class="card-text"><small class="text-body-secondary">Tier <!-- place the tier number here --> Subscriber! </small></p>
-                                    </div>
-
-                                </div>
-
+                    <div class="card recentcard"> <!-- recently subscribed -->
+                        <div class="col">
+                            <div class="card-body">
+                                <h5 class="card-title">Recent PowerLifter</h5>
+                                <?php if ($recentPowerLifter): ?>
+                                    <p class="card-text"><?php echo $recentPowerLifter['firstName'] . ' ' . $recentPowerLifter['lastName']; ?></p>
+                                    <p class="card-text"><small class="text-body-secondary">Tier <?php echo $recentPowerLifter['tier']; ?> Subscriber!</small></p>
+                                <?php else: ?>
+                                    <p class="card-text">No recent subscribers.</p>
+                                <?php endif; ?>
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="card recentcard"> <!-- recently signed up -->
-
-                                <div class="col">
-
-                                    <div class="card-body">
-                                        <h5 class="card-title">Recent Signup</h5>
-                                        <p class="card-text"> <!-- Name of the recently signed up user --> </p>
-                                        <p class="card-text"><small class="text-body-secondary">Registered <!-- how many hours --> ago. </small></p>
-                                    </div>
-
-                                </div>
-                                
+                    <div class="card recentcard"> <!-- total subscribed members -->
+                        <div class="col">
+                            <div class="card-body">
+                                <h5 class="card-title">Total PowerLifters</h5>
+                                <p class="card-text"><?php echo $totalPowerLifters; ?></p>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="card recentcard"> <!-- total number of members -->
+                        <div class="col">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Members</h5>
+                                <p class="card-text"><?php echo $totalMembers; ?></p>
+                            </div>
+                        </div>
+                    </div>
 
             </div>
         </div>
