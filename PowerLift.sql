@@ -3,9 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 08, 2024 at 04:20 PM
+-- Generation Time: May 10, 2024 at 12:39 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
+
+CREATE DATABASE IF NOT EXISTS `PowerLift`;
+USE `PowerLift`;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,10 +48,37 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstName`, `lastName`, `email`, `password`, `tier`, `activation_code`, `role`, `subscription_start_date`, `subscription_end_date`) VALUES
-(1, 'Testing', 'Joe', 'joemama@aol.com', '$2y$10$XQtvHjoiiFPTjY1NTDiAtu1S3HhJlTLvB26ynGaCbO3h0sYIo9OEm', 6, 'NYG-5608', 'users', '2024-05-08', '2024-11-08'),
-(2, 'Neil', 'Bayron', 'admin@admin.lol', '$2y$10$n0Ls0HYtSl/iBXopj3jBbOiRY8ziBIhi26enqgjq7ywHAMfT6Z4m2', 6, 'VIZ-0514', 'admin', '2024-05-06', '2024-11-06'),
-(4, 'Testing', '2', '2001101888@student.buksu.edu.ph', '$2y$10$tt4xQyHf1hqQiLFwr7PWl.Oby1bWilPgWKVsRzH8YE/UN6dzNob3.', 12, 'XQN-0654', 'users', '2024-05-06', '2025-05-06'),
-(5, 'Testing', '3', '2001101888@student.buksu.edu.ph', '$2y$10$XDkDaQULt0Lv0eK86CXy9OX5F.zivU9/6gshaGSHPeEVjGnHTKsUe', 1, 'LTB-9742', 'users', '2024-05-06', '2024-06-06');
+(1, 'Admin', '1', 'admin@admin.com', '$2y$10$sFX0HSXSHd6S2w6/9tHB0O6A3lxqNegnFR0Gmnu5lamabs9UXDP2O', 12, 'OSX-1309', 'admin', '2024-05-10', '2025-05-10'),
+(2, 'John', 'Doe', 'joemama@aol.com', '$2y$10$uMShCQ7rWWA1FvsiQvi.ZOErIGdk1VaKkatUHAmd/qwTmRY9kHXBe', 6, 'UML-9423', 'users', NULL, NULL),
+(3, 'Tessa', 'Violet', 'tessa@gmail.com', '$2y$10$FQJqjwM8jzWoOt5xg1kiE.KqYXp4kdoFnIg6sm45AmogGE4xuegUG', 6, 'FCH-0978', 'users', '2024-05-10', '2024-11-10'),
+(4, 'Anna', 'Loevr', 'anna@aol.com', '$2y$10$v77rVIxLPTArr0YaJc/zYuirDkiylE5KZDhEiba0CvggqxwrQr4XG', 6, 'HGV-7305', 'users', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `visit_history`
+--
+
+CREATE TABLE `visit_history` (
+  `id` int(11) NOT NULL,
+  `user_email` varchar(100) NOT NULL,
+  `visit_date` date NOT NULL,
+  `time_in` time NOT NULL,
+  `time_out` time DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `visit_history`
+--
+
+INSERT INTO `visit_history` (`id`, `user_email`, `visit_date`, `time_in`, `time_out`) VALUES
+(1, 'tessa@gmail.com', '2024-05-10', '09:12:01', '11:32:57'),
+(2, 'tessa@gmail.com', '2024-05-10', '11:26:07', '11:32:57'),
+(3, 'tessa@gmail.com', '2024-05-10', '11:33:16', '11:34:02'),
+(4, 'tessa@gmail.com', '2024-05-10', '11:36:25', '11:36:47'),
+(5, 'tessa@gmail.com', '2024-05-10', '11:36:53', '11:41:15'),
+(6, 'tessa@gmail.com', '2024-05-10', '11:41:28', '11:43:27'),
+(7, 'tessa@gmail.com', '2024-05-10', '11:45:15', '11:46:52');
 
 --
 -- Indexes for dumped tables
@@ -58,7 +88,15 @@ INSERT INTO `users` (`id`, `firstName`, `lastName`, `email`, `password`, `tier`,
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email_unique` (`email`);
+
+--
+-- Indexes for table `visit_history`
+--
+ALTER TABLE `visit_history`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_user_email` (`user_email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -68,7 +106,23 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `visit_history`
+--
+ALTER TABLE `visit_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `visit_history`
+--
+ALTER TABLE `visit_history`
+  ADD CONSTRAINT `fk_user_email` FOREIGN KEY (`user_email`) REFERENCES `users` (`email`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
