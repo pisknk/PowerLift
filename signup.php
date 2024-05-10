@@ -63,6 +63,7 @@
 
                               <div class="col"> <!-- continue -->
                                 <div class="insides">
+                                  <br><br><br><br><br><br>
                                     <img src="img/smallogo.png"><br><br>
                                     <p1>signup for</p1>
                                     <h1>PowerLift</h1><br><br>
