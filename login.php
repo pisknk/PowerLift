@@ -1,66 +1,62 @@
 <?php
-// for debugging purposes
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // db connect attempt
+    // Database connection
     $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "PowerLift";
 
-    // connect try
     $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // check if okie
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // sql injection prevention
     $email = $conn->real_escape_string($_POST['email']);
     $password = $conn->real_escape_string($_POST['password']);
 
-    // check only for email
     $sql = "SELECT * FROM users WHERE email='$email'";
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
-        // then password
+        
         if (password_verify($password, $row['password'])) {
-            // check if the user has a subscription
+            // Check if the user has an active subscription
             if ($row['subscription_end_date'] != null && strtotime($row['subscription_end_date']) > time()) {
-                // encyr
                 $_SESSION['email'] = $email;
                 $_SESSION['role'] = $row['role'];
-    
-                // role
+
                 if ($_SESSION['role'] == 'admin') {
                     header("Location: dashboard/admin.php");
                     exit();
                 } elseif ($_SESSION['role'] == 'users') {
+                    $_SESSION['firstName'] = $row['firstName'];
+                    $_SESSION['lastName'] = $row['lastName'];
+                    $_SESSION['activationCode'] = $row['activation_code'];
+                    $_SESSION['tier'] = $row['tier'];
                     header("Location: hello/index.php");
                     exit();
                 } else {
-                    // handle other roles if needed
+                    // Handle other roles if needed
                 }
             } else {
-                // Redirect to nosubs.php if the user has no subscription or subscription_end_date is NULL
+                $_SESSION['email'] = $email;
+                $_SESSION['firstName'] = $row['firstName'];
+                $_SESSION['lastName'] = $row['lastName'];
+                $_SESSION['activationCode'] = $row['activation_code'];
+                $_SESSION['tier'] = $row['tier'];
                 header("Location: hello/nosub.php");
                 exit();
             }
         } else {
-            // invalid password error
             echo "Invalid email or password";
         }
     } else {
-        // email error
         echo "Invalid email or password";
-    }      
+    }
 
     $conn->close();
 }

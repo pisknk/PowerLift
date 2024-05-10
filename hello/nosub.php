@@ -1,12 +1,10 @@
 <?php
 session_start();
 
-// Check if the user is logged in
-if (!isset($_SESSION['email'])) {
-    // Redirect to login page if not logged in
-    header("Location: ../index.php");
-    exit();
-}
+// Fetch user data from session variables
+$email = $_SESSION['email'];
+$firstName = $_SESSION['firstName'];
+$lastName = $_SESSION['lastName'];
 
 // Fetch user data from the database
 $db_host = 'localhost';
@@ -26,14 +24,22 @@ try {
     $stmt->execute([$email]);
     $userData = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Extract user data
-    $activationCode = $userData['activation_code'];
-    $tier = $userData['tier'];
-    $firstName = $userData['firstName'];
-    $lastName = $userData['lastName'];
+    // Check if user data exists
+    if ($userData) {
+        // Extract user data
+        $activationCode = $userData['activation_code'];
+        $tier = $userData['tier'];
+        $firstName = $userData['firstName'];
+        $lastName = $userData['lastName'];
+    } else {
+        // Handle case where user data doesn't exist (optional)
+        echo "User data not found.";
+        exit();
+    }
 } catch(PDOException $e) {
     // Handle database connection errors
     echo "Connection failed: " . $e->getMessage();
+    exit();
 }
 ?>
 

@@ -66,7 +66,7 @@ if (isset($_SESSION['activation_success']) && $_SESSION['activation_success']) {
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="adminDropdown">
-                                <a class="dropdown-item logoutred" href="../index.php">Log out</a>
+                            <a class="dropdown-item logoutred" href="../logout.php">Log out</a>
                         
                             </div>
 

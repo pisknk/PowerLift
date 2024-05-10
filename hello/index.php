@@ -1,13 +1,6 @@
 <?php
 session_start();
 
-// checker if naka login ba
-if (!isset($_SESSION['email'])) {
-    // balik if dili logged in
-    header("Location: ../index.php");
-    exit();
-}
-
 $db_host = 'localhost';
 $db_name = 'PowerLift';
 $db_user = 'root';
@@ -83,7 +76,7 @@ try {
                                         <div class="buttons">
                                             <br>
                                             <a role="button" href="../index.php" class="btn btn-primary">View Visit History</a>
-                                            <a role="button" href="../index.php" class="btn btn-danger">Log out</a>
+                                            <a role="button" href="../logout.php" class="btn btn-danger">Log out</a>
                                             <br><br>
                                         </div>
                                     </div>
