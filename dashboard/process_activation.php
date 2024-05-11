@@ -1,17 +1,14 @@
 <?php
-
 session_start();
-$_SESSION['activation_success'] = true;
 
-$db_host = 'localhost'; // Change this to your database host
-$db_name = 'PowerLift'; // Change this to your database name
-$db_user = 'root'; // Change this to your database username
-$db_pass = ''; // Change this to your database password
+$db_host = 'localhost';
+$db_name = 'PowerLift';
+$db_user = 'root';
+$db_pass = '';
 
 try {
-    // Attempt to connect to the database
+    // Connect to the database
     $pdo = new PDO("mysql:host={$db_host};dbname={$db_name}", $db_user, $db_pass);
-    // Set the PDO error mode to exception
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -24,11 +21,14 @@ try {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         
         if ($user) {
-            // Redirect to areyousure.html and pass user information via URL parameters
+            // Redirect to areyousure.php and pass user information via URL parameters
             header("Location: areyousure.php?activation_code={$activation_code}&firstName={$user['firstName']}&lastName={$user['lastName']}&email={$user['email']}&tier={$user['tier']}");
             exit();
         } else {
-            echo "Invalid activation code!";
+            // Display browser alert for invalid activation code
+            echo "<script>alert('Whoops! The code you entered is invalid. Please try again.')</script>";
+            echo "<script>window.location.href = 'activate.php';</script>";
+            exit();
         }
     } elseif ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['confirm']) && $_GET['confirm'] == "true") {
         // Admin has confirmed the activation, update subscription start and end dates
@@ -52,11 +52,15 @@ try {
             $update_stmt = $pdo->prepare($update_sql);
             $update_stmt->execute([$subscription_start_date, $subscription_end_date, $activation_code]);
 
-            // Redirect to a success page or perform any other necessary action
-            header("Location: admin.php");
+            // Display browser alert for successful activation
+            echo "<script>alert('Member activated successfully! Thank you!')</script>";
+            echo "<script>window.location.href = 'admin.php';</script>";
             exit();
         } else {
-            echo "Invalid activation code!";
+            // Display browser alert for invalid activation code
+            echo "<script>alert('Whoops! The code you entered is invalid. Please try again.')</script>";
+            echo "<script>window.location.href = 'activate.php';</script>";
+            exit();
         }
     }
 } catch(PDOException $e) {

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Signup to PowerLift</title>
+    <title>Add a user to PowerLift</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="signup.css" rel="stylesheet">
@@ -64,11 +64,11 @@
                               <div class="col"> <!-- continue -->
                                 <div class="insides">
                                   <br><br><br><br><br><br>
-                                    <img src="img/smallogo.png"><br><br>
+                                    <img src="../img/smallogo.png"><br><br>
                                     <p1>signup for</p1>
                                     <h1><b>Power</b>Lift</h1><br><br>
                                     <button type="submit" class="btn btn-primary">Continue</button>
-                                    <button type="button" class="btn btn-secondary" aria-label="Close" onclick="window.location.href = 'index.php';">Go Back</button>
+                                    <button type="button" class="btn btn-secondary" aria-label="Close" onclick="window.location.href = 'members.php';">Go Back</button>
                                 </div>
                               </div>
                             </div>

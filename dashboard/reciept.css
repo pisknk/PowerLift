@@ -2,19 +2,24 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
 
 body{
-    background-image: url(img/bg.png);
+    background-image: url(../img/bg.png);
     background-size: cover;
     margin: 0;
-    padding: 6rem;
     font-family: Inter;
 }
 .dashes {
-    border: 5px dashed black; /* Adjust the color and width of the dashed outline as needed */
-    padding: 20px; /* Optional: Add padding to the div */
+    border: 5px dashed black;
+    padding: 20px;
     border-radius: 26px;
     margin-top: 2.6rem;
     margin-bottom: 2rem;
     margin-left: 1.3rem;
+}
+.subscription{
+    background: #CDCDCD !important;
+    border-radius: 26px;
+    padding: 20px;
+    margin-bottom: 2rem;
 }
 .card{
     border-radius: 26px !important;
@@ -23,8 +28,8 @@ body{
     backdrop-filter: blur(40.099998474121094px) !important;
 }
 .form-control{
-    border-radius: 10px;
-    background: #CDCDCD;
+    border-radius: 10px !important;
+    background: #CDCDCD !important;
 }
 h2{
     font-size: 24px !important;
@@ -34,13 +39,12 @@ h2{
 .secondpart{
     margin: auto;
 }
-.subscription{
-    background: #CDCDCD !important;
-    border-radius: 26px;
-    margin-left: 1.3rem;
-    padding: 20px;
-    margin-bottom: 2rem;
+.insides{
+    margin-top: 2rem;
 }
-.inside{
-    margin-left: 3rem;
+p1, p2, p3{
+    font-family: "DM Mono" !important;
+}
+p2{
+    font-size: 2rem !important;
 }

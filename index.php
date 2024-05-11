@@ -1,3 +1,83 @@
+<?php
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "PowerLift";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $email = $conn->real_escape_string($_POST['email']);
+    $password = $conn->real_escape_string($_POST['password']);
+
+    $sql = "SELECT * FROM users WHERE email='$email'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
+        
+        if (password_verify($password, $row['password'])) {
+            // check if the user has an active subscription
+            if ($row['subscription_end_date'] != null && strtotime($row['subscription_end_date']) > time()) {
+                $_SESSION['email'] = $email;
+                $_SESSION['role'] = $row['role'];
+
+                if ($_SESSION['role'] == 'admin') {
+                    header("Location: dashboard/admin.php");
+                    exit();
+                } elseif ($_SESSION['role'] == 'users') {
+                    $_SESSION['firstName'] = $row['firstName'];
+                    $_SESSION['lastName'] = $row['lastName'];
+                    $_SESSION['activationCode'] = $row['activation_code'];
+                    $_SESSION['tier'] = $row['tier'];
+
+                    // visit history
+                    $visit_date = date("Y-m-d");
+                    $time_in = date("H:i:s");
+
+                    $sql = "INSERT INTO visit_history (user_email, visit_date, time_in) VALUES (?, ?, ?)";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("sss", $email, $visit_date, $time_in);
+                    $stmt->execute();
+                    $stmt->close();
+
+                    header("Location: hello/index.php");
+                    exit();
+                } else {
+
+                }
+            } else {
+                $_SESSION['email'] = $email;
+                $_SESSION['firstName'] = $row['firstName'];
+                $_SESSION['lastName'] = $row['lastName'];
+                $_SESSION['activationCode'] = $row['activation_code'];
+                $_SESSION['tier'] = $row['tier'];
+                header("Location: hello/nosub.php");
+                exit();
+            }
+        } else {
+            // browser alert for incorrect email or password
+            echo '<script>alert("Incorrect email or password. Please try again."); window.location.href = "index.php";</script>';
+            exit();
+        }
+    } else {
+        // browser alert for incorrect email or password
+        echo '<script>alert("Incorrect email or password. Please try again."); window.location.href = "index.php";</script>';
+        exit();
+    }
+
+    $conn->close();
+}
+?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,10 +90,10 @@
 </head>
 <body>
 
-<form action="login.php" method="post"> <!-- form validation -->
+<form method="post"> <!-- form validation -->
     <div class="d-flex align-items-center justify-content-center" style="min-height: 100vh; margin: 0;">
 
-        <div class="container"> <!-- Card container -->
+        <div class="container"> <!-- card container -->
             <div class="card backk">
                 <div class="card-body">
                     <div class="container">
@@ -21,7 +101,7 @@
 
                             <div class="col"> <!-- input and controls -->
                             
-                                <br>
+                                <br><br><br>
                                 <img src="img/hello.webp" class="hello">
                                 <br><br>
                                 <h1>Say hello</h1>
@@ -36,7 +116,7 @@
                                             <br>
                                             <img src="img/loginlogo.png"><br><br>
                                             <p>Welcome to</p>
-                                            <h3>PowerLift</h3><br>
+                                            <h3><b>Power</b>Lift</h3><br>
                                         </div>
                                         <div class="inputs">
                                             <div class="form-floating mb-3">
@@ -68,6 +148,6 @@
     </div>
 </form>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

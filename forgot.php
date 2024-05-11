@@ -1,3 +1,44 @@
+<?php
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // db connect attempt
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "PowerLift";
+
+    // connect try
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // check if okie
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // sql injection prevention
+    $email = $conn->real_escape_string($_POST['email']);
+    $activation_code = $conn->real_escape_string($_POST['activation_code']);
+
+    // check for email and activation code
+    $sql = "SELECT * FROM users WHERE email='$email' AND activation_code='$activation_code'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows == 1) {
+        // email and activation code match, proceed to set new password
+        $_SESSION['email'] = $email;
+        header("Location: reset_password.php");
+        exit();
+    } else {
+        // invalid email or activation code
+        echo '<script>alert("Whoops! Email or Membership Code does not exist on the database. Please try again."); window.location.href = "forgot.php";</script>';
+        exit();
+    }
+
+    $conn->close();
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,10 +51,10 @@
 </head>
 <body>
 
-<form action="create.php" method="post"> <!-- form validation -->
+<form method="post"> <!-- form validation -->
     <div class="d-flex align-items-center justify-content-center" style="min-height: 100vh; margin: 0;">
 
-        <div class="container"> <!-- Card container -->
+        <div class="container"> <!-- card container -->
             <div class="card backk">
                 <div class="card-body">
                     <div class="container">
@@ -21,10 +62,11 @@
 
                             <div class="col"> <!-- input and controls -->
                             
+                            <br><br><br>
                                 <img src="img/forgot.webp" class="hello">
                                 <br><br>
                                 <h1>Did you forget your </h1>
-                                <h1>access to PowerLift?</h1>
+                                <h1>access to <b>Power</b>Lift?</h1>
 
                             </div>
 

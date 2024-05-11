@@ -56,7 +56,7 @@ if ($conn->connect_error) {
                     <div class="card-body">
                         <div class="container text-center">
                             <div class="row align-items-start">
-                                <div class="col">
+                                <div class="col"><br>
                                     <div class="dashes">
                                         <h><b>Payment Instructions:</b></h>
                                         <p>Please show this code to the cashier and pay:</p>
@@ -73,10 +73,12 @@ if ($conn->connect_error) {
                                 </div>
                                 <div class="col">
                                     <div class="insides">
-                                        <img src="img/smallogo.png"><br><br>
+                                        <img src="../img/smallogo.png"><br><br>
                                         <p7>thanks for subscribing to</p7>
-                                        <h1><b>Power</b>Lift</h1><br><br>
-                                        <a class="btn btn-primary" href="index.php" role="button">Back to Login</a>
+                                        <h1><b>Power</b>Lift</h1><br>
+                                        <p7><b>Has this member paid the membership?</b> <br> Please copy the membership code and click on "Activate Membership" below.</p7><br><br><br>
+                                        <a class="btn btn-primary" href="activate.php" role="button">Activate Membership</a>
+                                        <a class="btn btn-secondary" href="members.php" role="button">Return Home</a><br><br>
                                     </div>
                                 </div>
                             </div>

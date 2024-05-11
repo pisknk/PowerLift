@@ -71,7 +71,7 @@ if (isset($_SESSION['activation_success']) && $_SESSION['activation_success']) {
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link inactive" href="inventory.html"><i class="bi bi-phone"></i>Members</a>
+                        <a class="nav-link inactive" href="members.php"><i class="bi bi-people"></i>Members</a>
                     </li>
                     
                     <li class="nav-item">
@@ -124,7 +124,7 @@ if (isset($_SESSION['activation_success']) && $_SESSION['activation_success']) {
 
                     <div class="col-md-4"> <!-- manage products -->
                         <div class="card" style="width: 18rem;">
-                            <a href="inventory.html" class="add">
+                            <a href="members.php" class="add">
                                 <img src="../img/manage.png" class="card-img-top">
                                 <div class="card-body">
                                 <h5 class="card-title">Manage Members</h5>

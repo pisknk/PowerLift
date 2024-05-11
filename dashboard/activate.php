@@ -20,10 +20,10 @@
                         <div class="row align-items-start">
 
                             <div class="col"> <!-- input and controls -->
-                            
+                            <br><br><br>
                                 <img src="../img/forgot.webp" class="hello">
                                 <br><br>
-                                <h1>Activate a Member</h1>
+                                <h1><b>Activate a Member</b></h1>
 
                             </div>
 

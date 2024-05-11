@@ -50,35 +50,37 @@ try {
 
                             <div class="col"> <!-- input and controls -->
                             
-                                <br>
+                                <br><br>
                                 <img src="../img/helloalt.webp" class="hello">
                                 <br><br>
-                                <h1>Welcome back, <?php echo $userFirstName; ?>!</h1>
+                                <h1><b>Welcome back, <?php echo $userFirstName; ?>!</b></h1>
 
                             </div>
 
                             <div class="col"> <!-- continue -->
                                 <div class="card maincard">
-                                    <div class="card-body text-center">
-                                        <div class="head">
+                                    <div class="card-body">
+                                        <div class="head text-center">
                                             <br>
                                             <p>You can now exit the site,<br> but don’t forget to come back here later to logout.</p><br>
                                         </div>
 
-                                        <a href="membership.html"> <div class="card boxx">
+                                        <div class="card boxx text-center">
 
                                             <p1>MEMBERSHIP WILL EXPIRE ON:</p1><br>
-                                            <p2><b><?php echo $membershipExpirationDate; ?></b></p2><br>
-                                            <p3>tap card to manage your subscription</p3>
+                                            <p2><b><?php echo $membershipExpirationDate; ?></b></p2>
 
-                                        </div> </a>
+                                        </div>
 
-                                        <div class="buttons">
+                                        <div class="buttons text-center">
                                             <br>
+
                                             <a role="button" href="history.php" class="btn btn-primary">View Visit History</a>
                                             <button type="submit" class="btn btn-danger">Log out</button>
                                             <br><br>
+
                                         </div>
+                                       
                                     </div>
                                 </div>
                             </div>

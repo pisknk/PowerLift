@@ -29,10 +29,11 @@ $tier = $_GET["tier"];
                         <div class="row align-items-start">
 
                             <div class="col"> <!-- input and controls -->
-                            
-                                <img src="../img/verify.webp" class="hello">
+                                <br><br><br>
+                                <img src="../img/pencil.webp" class="hello">
                                 <br><br>
-                                <h1>Is this right?</h1>
+                                <h1><b>Is this right?</b></h1>
+                                <p1>Please double check the provided info.</p1>
 
                             </div>
 

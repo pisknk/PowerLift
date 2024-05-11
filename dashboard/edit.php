@@ -31,22 +31,39 @@ if (isset($_GET['id'])) {
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the updated values from the form
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $email = $_POST['email'];
-
-    // Update the member details in the database
-    $updateSql = "UPDATE users SET firstName = '$firstName', lastName = '$lastName', email = '$email' WHERE id = $id";
-    if ($conn->query($updateSql) === TRUE) {
+    // Check if the delete button is clicked
+    if (isset($_POST['delete'])) {
+        // Delete the member from the database
+        $deleteSql = "DELETE FROM users WHERE id = $id";
+        if ($conn->query($deleteSql) === TRUE) {
 ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>✅</strong> User details has been updated. Refresh page to reflect changes. <br><br> Or you can now click on the X button to go back safely.
-            <button type="button" class="btn-close" aria-label="Close" onclick="window.location.href = 'members.php';"></button>
-        </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>✅</strong> User entry has been deleted.
+                <button type="button" class="btn-close" aria-label="Close" onclick="window.location.href = 'members.php';"></button>
+            </div>
 <?php
+        } else {
+            echo "Error deleting member: " . $conn->error;
+        }
+        // You can add redirection to members.php here if needed
     } else {
-        echo "Error updating member details: " . $conn->error;
+        // Get the updated values from the form
+        $firstName = $_POST['firstName'];
+        $lastName = $_POST['lastName'];
+        $email = $_POST['email'];
+
+        // Update the member details in the database
+        $updateSql = "UPDATE users SET firstName = '$firstName', lastName = '$lastName', email = '$email' WHERE id = $id";
+        if ($conn->query($updateSql) === TRUE) {
+?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>✅</strong> User details has been updated. Refresh page to reflect changes. <br><br> Or you can now click on the X button to go back safely.
+                <button type="button" class="btn-close" aria-label="Close" onclick="window.location.href = 'members.php';"></button>
+            </div>
+<?php
+        } else {
+            echo "Error updating member details: " . $conn->error;
+        }
     }
 }
 
@@ -99,12 +116,14 @@ $conn->close();
                           <div class="col"> <!-- continue -->
                             <div class="inside">
                                 <br><br><br>
-                                <h1>📝 Edit Details</h1><br><br>
+                                <h1><b>📝 Edit Details</b></h1><br><br>
                                 <p1>Current Details</p1><br><br>
                                 <p2 class="text-start"><b>Name: <?php echo $row['firstName'] . ' ' . $row['lastName']; ?></b> </p2><br>
                                 <p2 class="text-start"><b>Email: <?php echo $row['email']; ?></b> </p2><br><br><br>
 
-                                <button type="submit" class="btn btn-primary">Continue</button><br><br>
+                                <button type="submit" class="btn btn-primary">Continue</button>
+                                <button type="submit" name="delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this entry?');">Delete Entry</button>
+                                <button type="button" class="btn btn-secondary" aria-label="Close" onclick="window.location.href = 'members.php';">Go Back</button><br><br>
                             </div>
                           </div>
                         </div>

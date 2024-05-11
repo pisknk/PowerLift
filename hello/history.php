@@ -63,7 +63,7 @@ try {
                             <br>
                             <img src="../img/history.webp" class="hello">
                             <br><br>
-                            <h1>Attendance History</h1>
+                            <h1><b>Attendance History</b></h1>
                         </div>
                         <div class="col">
                             <div class="card maincard">
