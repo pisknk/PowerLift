@@ -70,7 +70,7 @@
 .recentcard{                /* recently sold stat widget */
     margin-left: 5rem;
     margin-top: 3rem;
-    max-width: 29rem;
+    max-width: 28rem !important;
     padding: 20px;
 }
 

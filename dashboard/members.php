@@ -52,10 +52,6 @@ $result = $conn->query($sql);
                     <li class="nav-item">
                         <a class="nav-link active" href="members.php"><i class="bi bi-people-fill"></i>Members</a>
                     </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link inactive" href="sales.html"><i class="bi bi-bar-chart-line"></i>Checkup</a>
-                    </li>
 
                     <div class="bottom-item dropdown"> <!-- items sa ubos -->
 

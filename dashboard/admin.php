@@ -73,10 +73,6 @@ if (isset($_SESSION['activation_success']) && $_SESSION['activation_success']) {
                     <li class="nav-item">
                         <a class="nav-link inactive" href="members.php"><i class="bi bi-people"></i>Members</a>
                     </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link inactive" href="sales.html"><i class="bi bi-bar-chart-line"></i>Checkup</a>
-                    </li>
 
                     <div class="bottom-item dropdown"> <!-- items sa ubos -->
 
@@ -116,7 +112,7 @@ if (isset($_SESSION['activation_success']) && $_SESSION['activation_success']) {
                                 <img src="../img/activate.png" class="card-img-top">
                                 <div class="card-body">
                                 <h5 class="card-title">Activate a Subscriber</h5>
-                                <p2 class="card-text">Simply enter their membership code here.</p2>
+                                <p2 class="card-text">Enter membership code here.</p2>
                                 </div>
                             </a>
                         </div>
@@ -128,7 +124,7 @@ if (isset($_SESSION['activation_success']) && $_SESSION['activation_success']) {
                                 <img src="../img/manage.png" class="card-img-top">
                                 <div class="card-body">
                                 <h5 class="card-title">Manage Members</h5>
-                                <p3 class="card-text">Add, delete, or modify enrolled members details.</p3>
+                                <p3 class="card-text">Easily modify user details here.</p3>
                                 </div>
                             </a>
                         </div>
@@ -136,11 +132,11 @@ if (isset($_SESSION['activation_success']) && $_SESSION['activation_success']) {
 
                     <div class="col-md-4"> <!-- purchase history -->
                         <div class="card" style="width: 18rem;">
-                            <a href="sales.html" class="add">
+                            <a href="signup.php" class="add">
                                 <img src="../img/equipments.png" class="card-img-top">
                                 <div class="card-body">
-                                <h5 class="card-title">Quick Checkup</h5>
-                                <p3 class="card-text">Look at the equipment's health stats. [BETA]</p3>
+                                <h5 class="card-title">Add a Member</h5>
+                                <p3 class="card-text">Quickly add a user here.</p3>
                                 </div>
                             </a>
                         </div>
@@ -150,9 +146,15 @@ if (isset($_SESSION['activation_success']) && $_SESSION['activation_success']) {
 
                 <div class="line"></div> <!-- line for depth effect - widget area -->
 
-                    <div class="card recentcard"> <!-- recently subscribed -->
+                <div class="row">
+
+                <div class="card recentcard" style="max-width: 540px;"> <!-- recent subscriber -->
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                        <img src="../img/PowerLifter.png" class="img-fluid rounded-start" alt="...">
+                        </div>
                         <div class="col">
-                            <div class="card-body">
+                        <div class="card-body">
                                 <h5 class="card-title">Recent PowerLifter</h5>
                                 <?php if ($recentPowerLifter): ?>
                                     <p class="card-text"><?php echo $recentPowerLifter['firstName'] . ' ' . $recentPowerLifter['lastName']; ?></p>
@@ -160,27 +162,40 @@ if (isset($_SESSION['activation_success']) && $_SESSION['activation_success']) {
                                 <?php else: ?>
                                     <p class="card-text">No recent subscribers.</p>
                                 <?php endif; ?>
-                            </div>
+                        </div>
                         </div>
                     </div>
+                    </div>
 
-                    <div class="card recentcard"> <!-- total subscribed members -->
+                    <div class="card recentcard" style="max-width: 540px;"> <!-- total number of subscribers -->
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                        <img src="../img/subscribers.png" class="img-fluid rounded-start" alt="...">
+                        </div>
                         <div class="col">
-                            <div class="card-body">
+                        <div class="card-body">
                                 <h5 class="card-title">Total PowerLifters</h5>
-                                <p class="card-text"><?php echo $totalPowerLifters; ?></p>
+                                <p class="card-text"><?php echo $totalPowerLifters; ?> Subscribers</p>
                             </div>
                         </div>
+                    </div>
                     </div>
 
-                    <div class="card recentcard"> <!-- total number of members -->
+                    <div class="card recentcard" style="max-width: 540px;"> <!-- total number of members -->
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                        <img src="../img/users.png" class="img-fluid rounded-start" alt="...">
+                        </div>
                         <div class="col">
-                            <div class="card-body">
+                        <div class="card-body">
                                 <h5 class="card-title">Total Members</h5>
-                                <p class="card-text"><?php echo $totalMembers; ?></p>
+                                <p class="card-text"><?php echo $totalMembers; ?> Gym Members</p>
                             </div>
                         </div>
                     </div>
+                    </div>
+
+                </div>
 
             </div>
         </div>
