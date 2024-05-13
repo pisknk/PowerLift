@@ -21,7 +21,7 @@
 
                             <div class="col"> <!-- input and controls -->
                             <br><br><br>
-                                <img src="../img/forgot.webp" class="hello">
+                                <img src="../img/activate.webp" class="hello">
                                 <br><br>
                                 <h1><b>Activate a Member</b></h1>
 
